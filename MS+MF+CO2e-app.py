@@ -175,7 +175,7 @@ st.write('---')
 ngb_model_MS = pickle.load(open('ngb_model_MS.pkl', 'rb'))
 ngb_model_MF = pickle.load(open('ngb_model_MF.pkl', 'rb'))
 ngb_model_CO2e = pickle.load(open('ngb_model_CO2e.pkl', 'rb'))
-preprocessor = pickle.load(open('preprocessor_MS.pkl', 'rb'))
+preprocessor = pickle.load(open('preprocessor.pkl', 'rb'))
 X_input_processed = preprocessor.transform(df_input)
 
 dist = ngb_model1.pred_dist(X_input_processed)
@@ -242,7 +242,7 @@ st.write('---')
 # === MF ===
 
 ngb_model2 = pickle.load(open('ngb_model_MF.pkl', 'rb'))
-preprocessor = pickle.load(open('preprocessor_MF.pkl', 'rb'))
+preprocessor = pickle.load(open('preprocessor.pkl', 'rb'))
 X_input_processed = preprocessor.transform(df_input)
 
 dist = ngb_model2.pred_dist(X_input_processed)
@@ -307,7 +307,7 @@ st.download_button(
 # === CO2e ===
 
 ngb_model2 = pickle.load(open('ngb_model_CO2e.pkl', 'rb'))
-preprocessor = pickle.load(open('preprocessor_CO2e.pkl', 'rb'))
+preprocessor = pickle.load(open('preprocessor.pkl', 'rb'))
 X_input_processed = preprocessor.transform(df_input)
 
 dist = ngb_model2.pred_dist(X_input_processed)
