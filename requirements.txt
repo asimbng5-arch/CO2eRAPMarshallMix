@@ -1,0 +1,8 @@
+streamlit>=1.33.0
+pandas>=2.2.0
+numpy>=1.26.0
+pillow>=10.2.0
+openpyxl>=3.1.2
+scikit-learn==1.7.1
+ngboost>=0.5.0
+tqdm>=4.66.0
