@@ -7,6 +7,7 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+import joblib
 
 # Page setup
 st.set_page_config(layout="centered")
@@ -174,18 +175,7 @@ if other_cols:
 
 # === MS ===
 st.write('---')
-MODEL_MS_PATH = os.path.join(os.path.dirname(__file__), "ngb_model_MS.pkl")
-
-if not os.path.exists(MODEL_MS_PATH):
-    st.error("ngb_model_MS.pkl was not found.")
-    st.stop()
-
-try:
-    with open(MODEL_MS_PATH, "rb") as f:
-        ngb_model_MS = pickle.load(f)
-except Exception as e:
-    st.error(f"Error loading MS model: {e}")
-    st.stop()
+ngb_model_MS = joblib.load("ngb_model_MS.pkl")
 preprocessor = pickle.load(open('preprocessor_MS.pkl', 'rb'))
 dist = ngb_model_MS.pred_dist(X_input_processed)
 X_input_processed = preprocessor.transform(df_input)
@@ -253,7 +243,7 @@ st.write('---')
 
 # === MF ===
 
-ngb_model2 = pickle.load(open('ngb_model_MF.pkl', 'rb'))
+ngb_model_MF = joblib.load("ngb_model_MF.pkl")
 preprocessor = pickle.load(open('preprocessor_MF.pkl', 'rb'))
 X_input_processed = preprocessor.transform(df_input)
 
@@ -318,7 +308,7 @@ st.download_button(
 
 # === CO2e ===
 
-ngb_model2 = pickle.load(open('ngb_model_CO2e.pkl', 'rb'))
+ngb_model_CO2e = joblib.load("ngb_model_CO2e.pkl")
 preprocessor = pickle.load(open('preprocessor_CO2e.pkl', 'rb'))
 X_input_processed = preprocessor.transform(df_input)
 
