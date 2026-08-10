@@ -3,5 +3,8 @@ pandas
 numpy
 pillow
 openpyxl
-scikit-learn
 matplotlib
+scipy
+scikit-learn
+ngboost
+joblib
