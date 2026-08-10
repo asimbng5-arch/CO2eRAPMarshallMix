@@ -1,10 +1,10 @@
 streamlit
 pandas
 numpy
-pillow
-openpyxl
-matplotlib
 scipy
+matplotlib
+openpyxl
+pillow
+joblib
 scikit-learn
 ngboost
-joblib
