@@ -34,7 +34,7 @@ df_full_fm = pd.concat([df_real_fm, df_synth_fm], ignore_index=True)
 
 df_real_CO2e = pd.read_excel("TSTR_CO2e.xlsx", sheet_name="real")
 df_synth_CO2e = pd.read_excel("TSTR_CO2e.xlsx", sheet_name="synthetic")
-df_full_CO2e = pd.concat([df_real_fm, df_synth_fm], ignore_index=True)
+df_full_CO2e = pd.concat([df_real_fm, df_synth_CO2e], ignore_index=True)
 
 # Columns for MS prediction
 target_col = 'MS (kN)'
@@ -175,6 +175,7 @@ if other_cols:
 st.write('---')
 ngb_model_MS = pickle.load(open('ngb_model_MS.pkl', 'rb'))
 preprocessor = pickle.load(open('preprocessor_MS.pkl', 'rb'))
+dist = ngb_model_MS.pred_dist(X_input_processed)
 X_input_processed = preprocessor.transform(df_input)
 
 dist = ngb_model1.pred_dist(X_input_processed)
@@ -244,13 +245,13 @@ ngb_model2 = pickle.load(open('ngb_model_MF.pkl', 'rb'))
 preprocessor = pickle.load(open('preprocessor_MF.pkl', 'rb'))
 X_input_processed = preprocessor.transform(df_input)
 
-dist = ngb_model2.pred_dist(X_input_processed)
+dist = ngb_model_MF.pred_dist(X_input_processed)
 mean_pred = float(dist.loc[0])
 std_pred = float(dist.scale[0])
 ci_lower = mean_pred - 1.96 * std_pred
 ci_upper = mean_pred + 1.96 * std_pred
 
-st.header('Predicted TSR')
+st.header('Predicted MF')
 st.markdown(f"<b><font color='green'>μ (Mean Prediction):</font> {mean_pred:.4f} </b>", unsafe_allow_html=True)
 st.markdown(f"<b><font color='orange'>σ (Standard Deviation):</font> {std_pred:.4f} </b>", unsafe_allow_html=True)
 st.markdown(f"<b><font color='purple'>95% Confidence Interval:</font> [{ci_lower:.4f}, {ci_upper:.4f}] </b>", unsafe_allow_html=True)
@@ -309,13 +310,13 @@ ngb_model2 = pickle.load(open('ngb_model_CO2e.pkl', 'rb'))
 preprocessor = pickle.load(open('preprocessor_CO2e.pkl', 'rb'))
 X_input_processed = preprocessor.transform(df_input)
 
-dist = ngb_model2.pred_dist(X_input_processed)
+dist = ngb_mode_CO2e.pred_dist(X_input_processed)
 mean_pred = float(dist.loc[0])
 std_pred = float(dist.scale[0])
 ci_lower = mean_pred - 1.96 * std_pred
 ci_upper = mean_pred + 1.96 * std_pred
 
-st.header('Predicted TSR')
+st.header('Predicted CO2e')
 st.markdown(f"<b><font color='green'>μ (Mean Prediction):</font> {mean_pred:.4f} </b>", unsafe_allow_html=True)
 st.markdown(f"<b><font color='orange'>σ (Standard Deviation):</font> {std_pred:.4f} </b>", unsafe_allow_html=True)
 st.markdown(f"<b><font color='purple'>95% Confidence Interval:</font> [{ci_lower:.4f}, {ci_upper:.4f}] </b>", unsafe_allow_html=True)
@@ -348,7 +349,7 @@ for i, s in enumerate(sigmas):
                     color=sigma_colors[i], alpha=0.6 - i*0.15,
                     label=f'±{s}σ ({[68.3, 95.4, 99.7][i]}%)')
 
-ax.set_xlabel(r'$MF$')
+ax.set_xlabel(r'$CO2e$')
 ax.set_ylabel('PDF')
 ax.ticklabel_format(style='plain', axis='x')
 ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda val, _: f'{val:.1f}'))
