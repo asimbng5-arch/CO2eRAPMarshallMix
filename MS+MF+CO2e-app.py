@@ -173,7 +173,7 @@ if other_cols:
 
 # === MS ===
 st.write('---')
-ngb_model_MS = pickle.load(open('ngb_model_MS.pkl', 'rb'))
+ngb_model_MS = pickle.load(open("./ngb_model_MS.pkl", "rb"))
 preprocessor = pickle.load(open('preprocessor_MS.pkl', 'rb'))
 dist = ngb_model_MS.pred_dist(X_input_processed)
 X_input_processed = preprocessor.transform(df_input)
