@@ -36,7 +36,7 @@ df_full_fm = pd.concat([df_real_fm, df_synth_fm], ignore_index=True)
 
 df_real_CO2e = pd.read_excel("TSTR_CO2e.xlsx", sheet_name="real")
 df_synth_CO2e = pd.read_excel("TSTR_CO2e.xlsx", sheet_name="synthetic")
-df_full_CO2e = pd.concat([df_real_fm, df_synth_CO2e], ignore_index=True)
+df_full_CO2e = pd.concat([df_real_CO2e, df_synth_CO2e], ignore_index=True)
 
 # Columns for MS prediction
 target_col = 'MS (kN)'
