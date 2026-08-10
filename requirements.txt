@@ -1,10 +1,10 @@
 streamlit
 pandas
-numpy
-scipy
+numpy==2.0.2
+scipy==1.16.3
 matplotlib
 openpyxl
-pillow
-joblib
-scikit-learn
-ngboost
+Pillow
+joblib==1.5.3
+scikit-learn==1.6.1
+ngboost==0.5.11
