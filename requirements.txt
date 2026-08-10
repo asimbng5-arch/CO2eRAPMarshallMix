@@ -1,10 +1,6 @@
-streamlit
-pandas
-numpy==2.0.2
-scipy==1.16.3
-matplotlib
-openpyxl
-Pillow
-joblib==1.5.3
-scikit-learn==1.6.1
-ngboost==0.5.11
+Python       3.12.13
+scikit-learn 1.6.1
+numpy        2.0.2
+scipy        1.16.3
+joblib       1.5.3
+ngboost      0.5.11
