@@ -175,7 +175,17 @@ if other_cols:
 # === MS ===
 st.write('---')
 MODEL_MS_PATH = os.path.join(os.path.dirname(__file__), "ngb_model_MS.pkl")
-ngb_model_MS = pickle.load(open(MODEL_MS_PATH, "rb"))
+
+if not os.path.exists(MODEL_MS_PATH):
+    st.error(f"Model file not found: {MODEL_MS_PATH}")
+    st.stop()
+
+try:
+    with open(MODEL_MS_PATH, "rb") as f:
+        ngb_model_MS = pickle.load(f)
+except Exception as e:
+    st.error(f"Error loading MS model: {e}")
+    st.stop()
 preprocessor = pickle.load(open('preprocessor_MS.pkl', 'rb'))
 dist = ngb_model_MS.pred_dist(X_input_processed)
 X_input_processed = preprocessor.transform(df_input)
