@@ -1,4 +1,5 @@
 import io
+import os
 import pandas as pd
 import streamlit as st
 from PIL import Image
@@ -173,7 +174,8 @@ if other_cols:
 
 # === MS ===
 st.write('---')
-ngb_model_MS = pickle.load(open("ngb_model_MS.pkl", "rb"))
+MODEL_MS_PATH = os.path.join(os.path.dirname(__file__), "ngb_model_MS.pkl")
+ngb_model_MS = pickle.load(open(MODEL_MS_PATH, "rb"))
 preprocessor = pickle.load(open('preprocessor_MS.pkl', 'rb'))
 dist = ngb_model_MS.pred_dist(X_input_processed)
 X_input_processed = preprocessor.transform(df_input)
