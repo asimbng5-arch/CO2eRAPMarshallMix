@@ -49,7 +49,7 @@ numerical_cols_fm = [col for col in df_full_fm.columns if col not in categorical
 # Columns for CO2e prediction
 target_col_co2e = 'CO2'
 categorical_cols_co2e = ['AgT', 'VAPG', 'RT', 'FT']
-numerical_cols_co2e = [col for col in df_full_CO2.columns if col not in categorical_cols_co2e + [target_col_co2e]]
+numerical_cols_co2e = [col for col in df_full_CO2e.columns if col not in categorical_cols_co2e + [target_col_co2e]]
 
 input_descriptions = {
     'Dmax': ("Maximum aggregate size", "mm", r"$D_{max}$"),
